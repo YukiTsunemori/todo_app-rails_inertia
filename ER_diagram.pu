@@ -29,6 +29,6 @@ entity "Task" as tasks {
     updated_at
 }
 
-users ||--o{ todos : "has many"
+users ||--o{ tasks : "has many"
 
 @enduml
