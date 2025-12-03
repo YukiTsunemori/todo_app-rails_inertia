@@ -24,6 +24,7 @@ entity "Task" as tasks {
     user_id <<FK>>
     memo
     completed_at
+    deadline_at
     created_at
     updated_at
 }
