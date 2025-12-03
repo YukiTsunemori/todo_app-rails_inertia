@@ -1,0 +1,33 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD", "") %>
+  host: <%= ENV.fetch("POSTGRES_HOST", "localhost") %>
+  port: <%= ENV.fetch("POSTGRES_PORT", 5432) %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("POSTGRES_DB", "todo_app_rails_inertia_development") %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("POSTGRES_TEST_DB", "todo_app_rails_inertia_test") %>
+
+production:
+  primary:
+    <<: *default
+    database: <%= ENV.fetch("POSTGRES_DB", "todo_app_rails_inertia_production") %>
+  cache:
+    <<: *default
+    database: <%= ENV.fetch("POSTGRES_CACHE_DB", "todo_app_rails_inertia_production_cache") %>
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *default
+    database: <%= ENV.fetch("POSTGRES_QUEUE_DB", "todo_app_rails_inertia_production_queue") %>
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *default
+    database: <%= ENV.fetch("POSTGRES_CABLE_DB", "todo_app_rails_inertia_production_cable") %>
+    migrations_paths: db/cable_migrate
