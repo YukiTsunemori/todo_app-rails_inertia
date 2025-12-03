@@ -17,7 +17,7 @@ entity "User" as users {
     updated_at
 }
 
-entity "Todo" as todos {
+entity "Task" as tasks {
     id
     --
     name
