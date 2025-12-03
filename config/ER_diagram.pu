@@ -1,0 +1,33 @@
+@startuml yonde
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+
+entity "User" as users {
+    id
+    --
+    name
+    email
+    password
+    verified
+    created_at
+    updated_at
+}
+
+entity "Todo" as todos {
+    id
+    --
+    name
+    user_id <<FK>>
+    memo
+    completed_at
+    created_at
+    updated_at
+}
+
+users ||--o{ todos : "has many"
+
+@enduml
