@@ -2,7 +2,7 @@
 
 class TasksController < ApplicationController
   def index
-    tasks = Current.user.tasks.all
+    tasks = Current.user.tasks
     render inertia: "Tasks/Index", props: {
       tasks: tasks
     }
