@@ -1,11 +1,13 @@
-<script setup>
+ <script setup lang="ts">
 import { Form } from '@inertiajs/vue3'
+import { Link } from '@inertiajs/vue3'
 import { LoaderCircle } from "lucide-vue-next"
 
 import InputError from "@/components/InputError.vue"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { editTaskPath } from '@/routes'
 
 const props = defineProps({
   tasks: Object
@@ -49,8 +51,9 @@ const props = defineProps({
     <h1>Task一覧</h1>
     <ul>
       <li v-for="task in props.tasks" :key="task.id">
-        {{ task.name }}
+        {{ task.name }} <Link :href="editTaskPath({id: task.id})">編集</Link>
       </li>
+      
     </ul>
   </div>
 </template>
