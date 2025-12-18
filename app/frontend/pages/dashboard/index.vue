@@ -2,7 +2,7 @@
 import { Head } from "@inertiajs/vue3"
 
 import AppLayout from "@/layouts/AppLayout.vue"
-import { dashboardPath } from "@/routes"
+import { rootPath } from "@/routes"
 import { type BreadcrumbItem } from "@/types"
 
 import PlaceholderPattern from "../../components/PlaceholderPattern.vue"
@@ -10,7 +10,7 @@ import PlaceholderPattern from "../../components/PlaceholderPattern.vue"
 const breadcrumbs: BreadcrumbItem[] = [
   {
     title: "Dashboard",
-    href: dashboardPath(),
+    href: rootPath(),
   },
 ]
 </script>
