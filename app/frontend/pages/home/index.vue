@@ -3,7 +3,7 @@ import { Head, Link } from "@inertiajs/vue3"
 
 import AppLogoIcon from "@/components/AppLogoIcon.vue"
 import ResourceItem from "@/components/ResourceItem.vue"
-import { dashboardPath, signInPath, signUpPath } from "@/routes"
+import { signInPath, signUpPath } from "@/routes"
 
 const links = [
   [
