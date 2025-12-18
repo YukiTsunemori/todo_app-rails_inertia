@@ -22,7 +22,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    task = Task.find(params[:id])
+    task = Current.user.tasks.find(params[:id])
     render inertia: "Tasks/Edit", props: {
       task: task.as_json(
         only: %i[id name memo deadline_at]
@@ -31,7 +31,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = Task.find(params[:id])
+    task = Current.user.tasks.find(params[:id])
 
     if task.update(task_params)
       redirect_to edit_task_path(task)
