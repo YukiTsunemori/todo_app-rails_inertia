@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { Form } from '@inertiajs/vue3'
-import { Link } from '@inertiajs/vue3'
+import { Form, Link } from '@inertiajs/vue3'
 import { LoaderCircle } from "lucide-vue-next"
 
 import InputError from "@/components/InputError.vue"
@@ -53,7 +52,6 @@ const props = defineProps({
       <li v-for="task in props.tasks" :key="task.id">
         {{ task.name }} <Link :href="editTaskPath({id: task.id})">編集</Link>
       </li>
-      
     </ul>
   </div>
 </template>
