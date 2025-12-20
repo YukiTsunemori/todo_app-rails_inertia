@@ -1,7 +1,5 @@
 <script setup>
-import { Form } from '@inertiajs/vue3'
-import { Link } from '@inertiajs/vue3'
-import { FormInput, LoaderCircle } from "lucide-vue-next"
+import { Form, Link } from '@inertiajs/vue3'
 
 import InputError from "@/components/InputError.vue"
 import { Button } from "@/components/ui/button"
@@ -23,11 +21,11 @@ const props = defineProps({
     #default="{ errors, processing}"
   >
     <Label for="task[name]">タスク名: </Label>
-    <input type="text" :value="task.name" name="task[name]"/>
-    <Label for="task.memo">メモ: </Label>
-    <input type="text" :value="task.memo" name="task[memo]"/>
+    <Input type="text" :value="task.name" name="task[name]"/>
+    <Label for="task[memo]">メモ: </Label>
+    <Input type="text" :value="task.memo" name="task[memo]"/>
     <Label for="task.deadline_at">締切日: </Label>
-    <input type="date" :value="task.deadline_at" name="task[deadline_at]"/>
+    <Input type="date" :value="task.deadline_at" name="task[deadline_at]"/>
     <Button type="submit" :disabled="processing">
       Submit Changes
     </Button>
