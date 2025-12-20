@@ -4,10 +4,7 @@ class TasksController < ApplicationController
   def index
     render inertia: "Tasks/Index", props: {
       tasks: Current.user.tasks.map do |task|
-        task.as_json(
-        ).merge(
-          edit_url: edit_task_path(task)
-        )
+        task.as_json
       end
     }
   end
