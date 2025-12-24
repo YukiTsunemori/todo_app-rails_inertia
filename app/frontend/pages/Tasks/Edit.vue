@@ -3,7 +3,6 @@ import { Form, Link } from '@inertiajs/vue3'
 
 import InputError from "@/components/InputError.vue"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { taskPath, rootPath } from '@/routes'
 
@@ -20,12 +19,12 @@ const props = defineProps({
     class="flex flex-col gap-6"
     #default="{ errors, processing}"
   >
-    <Label for="task[name]">タスク名: </Label>
-    <Input type="text" :value="task.name" name="task[name]"/>
+    <label for="task[name]">タスク名: </Label>
+    <input type="text" :value="task.name" id="task[name]" name="task[name]"/>
     <Label for="task[memo]">メモ: </Label>
-    <Input type="text" :value="task.memo" name="task[memo]"/>
-    <Label for="task.deadline_at">締切日: </Label>
-    <Input type="date" :value="task.deadline_at" name="task[deadline_at]"/>
+    <input type="text" :value="task.memo" id="task[memo]" name="task[memo]"/>
+    <Label for="task[deadline_at]">締切日: </Label>
+    <input type="date" :value="task.deadline_at" id="task[deadline_at]" name="task[deadline_at]"/>
     <Button type="submit" :disabled="processing">
       Submit Changes
     </Button>
