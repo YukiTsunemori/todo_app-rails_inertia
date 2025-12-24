@@ -6,7 +6,7 @@ import InputError from "@/components/InputError.vue"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { editTaskPath } from '@/routes'
+import { editTaskPath, taskPath } from '@/routes'
 
 const props = defineProps({
   tasks: Object
@@ -26,6 +26,7 @@ const props = defineProps({
         <Input
           type="text"
           name="task[name]"
+          id="task[name]"
           placeholder="タスク名を入力"
         />
         <InputError :message="errors['task.name']" />
@@ -33,12 +34,21 @@ const props = defineProps({
 
       <div class="grid gap-2">
         <Label for="task[memo]">メモ: </Label>
-        <Input type="text" name="task[memo]" />
+        <Input 
+          type="text"
+          name="task[memo]"
+          id="task[memo]"
+          placeholder="メモを入力できます"
+          />
       </div>
 
       <div class="grid gap-2">
         <Label for="task[deadline_at]">締切日: </Label>
-        <Input type="date" name="task[deadline_at]" />
+        <Input
+          type="date"
+          name="task[deadline_at]"
+          id="task[deadline_at]"
+          />
       </div>
 
       <Button type="submit" :disabled="processing">
@@ -48,10 +58,13 @@ const props = defineProps({
     </Form>
 
     <h1>Task一覧</h1>
-    <ul>
-      <li v-for="task in props.tasks" :key="task.id">
-        {{ task.name }} <Link :href="editTaskPath({id: task.id})">編集</Link>
-      </li>
-    </ul>
+      <div v-for="task in props.tasks" :key="task.id" class="flex">
+        {{ task.name }}
+        <Link :href="editTaskPath({id: task.id})"><Button>編集</Button></Link>
+        <Form :action="taskPath({id: task.id})" method="delete">
+          <input type="hidden" name="_method" valule="delete">
+          <Button type="submit">削除</Button>
+        </Form>
+      </div>
   </div>
 </template>
