@@ -1,14 +1,15 @@
-<script setup>
+<script setup lang="ts">
 import { Form, Link } from '@inertiajs/vue3'
 
-import InputError from "@/components/InputError.vue"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
-import { taskPath, rootPath } from '@/routes'
+import { rootPath, taskPath } from '@/routes'
+import { Task } from "@/types"
 
-const props = defineProps({
-  task: Object
-})
+type Props = {
+  task: Task
+}
+const { task } = defineProps<Props>()
 </script>
 <template>
 <h1>Task編集</h1>
@@ -17,9 +18,9 @@ const props = defineProps({
     :action="taskPath({id: task.id})"
     method="patch"
     class="flex flex-col gap-6"
-    #default="{ errors, processing}"
+    #default="{processing}"
   >
-    <label for="task[name]">タスク名: </Label>
+    <Label for="task[name]">タスク名: </Label>
     <input type="text" :value="task.name" id="task[name]" name="task[name]"/>
     <Label for="task[memo]">メモ: </Label>
     <input type="text" :value="task.memo" id="task[memo]" name="task[memo]"/>
@@ -29,6 +30,6 @@ const props = defineProps({
       Submit Changes
     </Button>
   </Form>
-  <Link :href="rootPath">戻る</Link>
+  <Link :href="rootPath()">戻る</Link>
 </div>
 </template>
