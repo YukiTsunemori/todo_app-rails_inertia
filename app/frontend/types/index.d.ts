@@ -47,3 +47,10 @@ export interface Session {
   ip_address: string
   created_at: string
 }
+
+export type Task = {
+  id: number
+  name: string | null
+  memo: string | null
+  deadline_at: string| null
+}
