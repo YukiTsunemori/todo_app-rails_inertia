@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
+  before_action :set_task, only: [:edit, :update]
   def index
     render inertia: "Tasks/Index", props: {
       tasks: Current.user.tasks.map do |task|
@@ -19,21 +20,18 @@ class TasksController < ApplicationController
   end
 
   def edit
-    task = Current.user.tasks.find(params[:id])
     render inertia: "Tasks/Edit", props: {
-      task: task.as_json(
+      task: @task.as_json(
         only: %i[id name memo deadline_at]
       )
     }
   end
 
   def update
-    task = Current.user.tasks.find(params[:id])
-
-    if task.update(task_params)
-      redirect_to edit_task_path(task)
+    if @task.update(task_params)
+      redirect_to edit_task_path(@task)
     else
-      redirect_to edit_task_path(task), inertia: {errors: task.errors}
+      redirect_to edit_task_path(@task), inertia: {errors: task.errors}
     end
   end
 
@@ -51,5 +49,9 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:name, :memo, :deadline_at)
+  end
+
+  def set_task
+    @task = Current.user.tasks.find(params[:id])
   end
 end
