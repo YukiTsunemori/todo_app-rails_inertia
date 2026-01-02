@@ -38,11 +38,8 @@ class TasksController < ApplicationController
   def destroy
     task = Current.user.tasks.find(params[:id])
 
-    if task.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
+    task.destroy
+    redirect_to root_path
   end
 
   private
