@@ -62,7 +62,6 @@ const props = defineProps({
         {{ task.name }}
         <Link :href="editTaskPath({id: task.id})"><Button>編集</Button></Link>
         <Form :action="taskPath({id: task.id})" method="delete">
-          <input type="hidden" name="_method" valule="delete">
           <Button type="submit">削除</Button>
         </Form>
       </div>
