@@ -25,7 +25,7 @@ const { task } = defineProps<Props>()
     <Label for="task[memo]">メモ: </Label>
     <input type="text" :value="task.memo" id="task[memo]" name="task[memo]"/>
     <Label for="task[deadline_at]">締切日: </Label>
-    <input type="date" :value="task.deadline_at" id="task[deadline_at]" name="task[deadline_at]"/>
+    <input type="datetime-local" :value="task.deadline_at" id="task[deadline_at]" name="task[deadline_at]"/>
     <Button type="submit" :disabled="processing">
       Submit Changes
     </Button>
