@@ -21,9 +21,12 @@ class TasksController < ApplicationController
 
   def edit
     render inertia: "Tasks/Edit", props: {
-      task: @task.as_json(
-        only: %i[id name memo deadline_at]
-      )
+      task: {
+        id: @task.id,
+        name: @task.name,
+        memo: @task.memo,
+        deadline_at: @task.deadline_at.strftime("%Y-%m-%dT%T")
+      }
     }
   end
 

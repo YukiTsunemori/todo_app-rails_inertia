@@ -12,7 +12,6 @@ const props = defineProps({
   tasks: Object
 })
 </script>
-
 <template>
   <div class="border-b border-gray-900/10 pb-12">
     <Form
@@ -45,7 +44,7 @@ const props = defineProps({
       <div class="grid gap-2">
         <Label for="task[deadline_at]">締切日: </Label>
         <Input
-          type="date"
+          type="datetime-local"
           name="task[deadline_at]"
           id="task[deadline_at]"
           />
