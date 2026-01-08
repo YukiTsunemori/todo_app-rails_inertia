@@ -12,10 +12,11 @@ class TasksController < ApplicationController
 
   def create
     task = Current.user.tasks.build(task_params)
+
     if task.save
-      redirect_to root_path
+      redirect_to root_path, notice: "タスクが作成されました"
     else
-      redirect_to root_path, inertia: {errors: task.errors}
+      redirect_to root_path, alert: "タスクの作成に失敗しました"
     end
   end
 
@@ -32,17 +33,20 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to edit_task_path(@task)
+      redirect_to edit_task_path(@task), notice: "タスクが編集されました"
     else
-      redirect_to edit_task_path(@task), inertia: {errors: task.errors}
+      redirect_to edit_task_path(@task), alert: "タスクの更新に失敗しました"
     end
   end
 
   def destroy
     task = Current.user.tasks.find(params[:id])
 
-    task.destroy
-    redirect_to root_path
+    if task.destroy
+      redirect_to root_path, notice: "タスクを削除しました"
+    else
+      redirect_to root_path, alert: "タスクの削除に失敗しました"
+    end
   end
 
   private
