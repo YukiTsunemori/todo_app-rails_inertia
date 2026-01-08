@@ -20,14 +20,24 @@ class TasksController < ApplicationController
   end
 
   def edit
-    render inertia: "Tasks/Edit", props: {
-      task: {
-        id: @task.id,
-        name: @task.name,
-        memo: @task.memo,
-        deadline_at: @task.deadline_at.strftime("%Y-%m-%dT%T")
+    if @task.deadline_at.nil?
+      render inertia: "Tasks/Edit", props: {
+          task: {
+            id: @task.id,
+            name: @task.name,
+            memo: @task.memo
+          }
+        }
+    else
+      render inertia: "Tasks/Edit", props: {
+        task: {
+          id: @task.id,
+          name: @task.name,
+          memo: @task.memo,
+          deadline_at: @task.deadline_at.strftime("%Y-%m-%dT%T")
+        }
       }
-    }
+    end
   end
 
   def update
