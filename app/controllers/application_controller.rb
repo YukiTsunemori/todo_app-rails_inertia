@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_current_request_details
   before_action :authenticate
-
+  inertia_share flash: -> { flash.to_hash }
   private
 
   def authenticate
